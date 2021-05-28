@@ -16,6 +16,8 @@ def make_even_sampler(dataset, labels, idx=None, nsamples=None):
 
 
 def make_biased_sampler(dataset, weights, nsamples=None):
+    if nsamples is None:
+        nsamples = len(labels)
     return WeightedRandomSampler(weights, nsamples, replacement=true)
 
 ## TODO:
