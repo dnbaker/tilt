@@ -6,7 +6,7 @@ except:
     from collections import Counter
 import torch.utils.data.sampler as torchsampler
 
-def make_even_sampler(dataset, labels, idx=None, nsamples=None):
+def make_even_sampler(labels, idx=None, nsamples=None):
     cts = Counter(labels[i] for i in (idx if idx else range(len(labels))))
     if nsamples is None:
         nsamples = len(labels)
@@ -16,9 +16,9 @@ def make_even_sampler(dataset, labels, idx=None, nsamples=None):
 
 
 
-def make_biased_sampler(dataset, weights, nsamples=None):
+def make_biased_sampler(weights, nsamples=None):
     if nsamples is None:
-        nsamples = len(labels)
+        nsamples = len(weights)
     return sampler.WeightedRandomSampler(weights, nsamples, replacement=true)
 
 ## TODO:
