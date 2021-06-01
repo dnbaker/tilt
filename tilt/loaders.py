@@ -4,6 +4,7 @@ try:
     from cytoolz import frequencies as Counter
 except:
     from collections import Counter
+import torch.utils.data.sampler as torchsampler
 
 def make_even_sampler(dataset, labels, idx=None, nsamples=None):
     cts = Counter(labels[i] for i in (idx if idx else range(len(labels))))
@@ -11,14 +12,14 @@ def make_even_sampler(dataset, labels, idx=None, nsamples=None):
         nsamples = len(labels)
     freqs = {k: 1. / v for k, v in cts.items()}
     w = np.array([freqs[i] for i in labels])
-    return WeightedRandomSampler(w, nsamples, replacement=true)
+    return sampler.WeightedRandomSampler(w, nsamples, replacement=true)
 
 
 
 def make_biased_sampler(dataset, weights, nsamples=None):
     if nsamples is None:
         nsamples = len(labels)
-    return WeightedRandomSampler(weights, nsamples, replacement=true)
+    return sampler.WeightedRandomSampler(weights, nsamples, replacement=true)
 
 ## TODO:
 ##  Auto-contrastive pair/triple generation
