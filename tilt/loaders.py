@@ -12,14 +12,14 @@ def make_even_sampler(labels, idx=None, nsamples=None):
         nsamples = len(labels)
     freqs = {k: 1. / v for k, v in cts.items()}
     w = np.array([freqs[i] for i in labels])
-    return sampler.WeightedRandomSampler(w, nsamples, replacement=true)
+    return torchsampler.WeightedRandomSampler(w, nsamples, replacement=True)
 
 
 
 def make_biased_sampler(weights, nsamples=None):
     if nsamples is None:
         nsamples = len(weights)
-    return sampler.WeightedRandomSampler(weights, nsamples, replacement=true)
+    return torchsampler.WeightedRandomSampler(weights, nsamples, replacement=True)
 
 ## TODO:
 ##  Auto-contrastive pair/triple generation
