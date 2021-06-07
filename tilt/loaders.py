@@ -22,11 +22,11 @@ def make_biased_sampler(weights, nsamples=None, replace=True):
 
 def make_weights(grouping_lists):
     counts = list(map(Counter, grouping_lists))
-    freqs = [{k: 1. / v for k, v in c.item()} for c in counts]
     t = []
-    for c, f, l in zip(counts, freqs, grouping_lists):
-        t.append(np.array([f[l[i]] for i in range(len(grouping_lists[0]))]))
-    return np.mean(np.vstack(t), axis=0)
+    for c, l in zip(counts, grouping_lists):
+        t.append(1. / np.array([c[l[i]] for i in range(len(grouping_lists[0]))]))
+    ret = np.mean(np.vstack(t), axis=0)
+    return ret / np.sum(ret)
 
 ## TODO:
 ##  Auto-contrastive pair/triple generation
