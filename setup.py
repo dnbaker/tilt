@@ -6,7 +6,7 @@ setup(
     url='https://github.com/dnbaker/tilt.git',
     author='Daniel Baker',
     author_email='dnb@cs.jhu.edu',
-    description='Tilt has data loaders and tuple miners for biased (and/)or biological datasets',
+    description='Tilt provides weighted PyTorch samplers for biased datasets',
     packages=find_packages(),    
     install_requires=['numpy >= 1.11.1', 'torch'],
 )
